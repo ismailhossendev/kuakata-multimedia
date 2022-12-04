@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import RecentVideo from './RecentVideo';
 import UpcomingContent from './UpcomingContent';
 import Teams from '../../ShareComponents/Teams';
+import Developer from '../../ShareComponents/Developer';
+import HomeBlog from './HomeBlog';
 
 const Home = () => {
     return (
@@ -14,6 +16,8 @@ const Home = () => {
             <RecentVideo />
             <UpcomingContent />
             <Teams />
+            {/* <Developer /> */}
+            <HomeBlog />
         </div>
     );
 };

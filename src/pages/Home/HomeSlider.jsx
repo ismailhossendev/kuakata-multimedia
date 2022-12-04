@@ -1,7 +1,18 @@
 import React from 'react';
+import { useEffect } from 'react';
 import Slider from 'react-slick';
 
 const HomeSlider = () => {
+    const [sliders, setSliders] = React.useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/sliders')
+            .then(res => res.json())
+            .then(data => {
+                setSliders(data)
+            })
+    }, [])
+
     const settings = {
         dots: true,
         infinite: true,
@@ -14,15 +25,14 @@ const HomeSlider = () => {
     return (
         <div>
             <Slider {...settings}>
-                <div>
-                    <img className='w-full lg:h-[500px] h-[200px] object-cover rounded-md' src="https://kuakatamultimedia.com/wp-content/uploads/2022/01/WhatsApp-Image-2022-01-09-at-1.31.59-PM.jpeg" alt="" />
-                </div>
-                <div>
-                    <img className='w-full lg:h-[500px] h-[200px] object-cover rounded-md' src="https://kuakatamultimedia.com/wp-content/uploads/2022/01/IMG20211226130118-scaled.jpg" alt="" />
-                </div>
-                <div>
-                    <img className='w-full lg:h-[500px] h-[200px] object-cover rounded-md' src="https://kuakatamultimedia.com/wp-content/uploads/2022/01/WhatsApp-Image-2022-01-14-at-2.48.01-PM.jpeg" alt="" />
-                </div>
+
+                {
+                    sliders.map(slider => {
+                        return <div>
+                            <img className='w-full lg:h-[500px] h-[200px] object-cover rounded-md' src={slider.image} alt="" />
+                        </div>
+                    })
+                }
             </Slider>
         </div>
     );
